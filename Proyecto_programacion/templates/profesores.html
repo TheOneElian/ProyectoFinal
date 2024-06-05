@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        h1{
+            color:red;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+     </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Profesores</h1>
+        <a href="/" ><button>Inicio</button></a>
+        <a href="/profesores/agregar_profesor"><button>Agregar profesor</button></a>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Materia</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for profesor in profesores %}
+                <tr>
+                    <td> {{profesor.id_profesor}} </td>
+                    <td> {{profesor.nombre_profesor}} </td>
+                    <td> {{profesor.materia_profesor}} </td>
+                    <td>
+                        <a href="/profesores/editar_profesor/{{ profesor.id_profesor}}" class="btn btn-warning">Editar</a>
+                        <form action="/profesores/eliminar_profesor/{{ profesor.id_profesor }}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
